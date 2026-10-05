@@ -36,6 +36,13 @@ const NETWORKS: u16 = 128;
 #[derive(Clone)]
 struct MaxNotExceededComparator {}
 
+/// Custom Comparator implmentation that compares a test value
+/// to a "capped" value.
+///
+/// Return Value:
+///   true -  test value is <= capped value
+///   false - test value is > capped value
+///
 impl Comparator for MaxNotExceededComparator {
     fn matches(&self, reference: &Snapshot, test: &Snapshot) -> bool {
         match (reference.contents().as_text(), test.contents().as_text()) {
